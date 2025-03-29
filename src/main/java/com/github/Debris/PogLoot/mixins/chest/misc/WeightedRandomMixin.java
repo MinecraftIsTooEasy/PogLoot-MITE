@@ -15,39 +15,41 @@ public class WeightedRandomMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/ItemStack;III)V", at = @At("TAIL"))
     private void alwaysMostQuantity(ItemStack item_stack, int min_quantity, int max_quantity, int weight, CallbackInfo ci) {
-        this.min_quantity = max_quantity;
+       if (PogLootConfig.LootItemMaxNum.getBooleanValue())
+           this.min_quantity = max_quantity;
     }
 
     @Inject(method = "<init>(IIIII)V", at = @At("TAIL"))
     private void alwaysMostQuantity(int item_id, int subtype, int min_quantity, int max_quantity, int weight, CallbackInfo ci) {
-        this.min_quantity = max_quantity;
+        if (PogLootConfig.LootItemMaxNum.getBooleanValue())
+            this.min_quantity = max_quantity;
     }
-
 
     @ModifyConstant(method = "tryAddArtifact", constant = @Constant(intValue = 10))
     private static int tryMore(int constant) {
-        return 64;
+        if (PogLootConfig.LootItemMaxNum.getBooleanValue()) return 64;
+        return constant;
     }
 
 
     @ModifyConstant(method = "tryAddArtifact", constant = @Constant(intValue = 40))
     private static int noDayNeeded(int constant) {
-        return PogLootConfig.ArtifactUnchecked.get() ? 0 : 40;
+        return PogLootConfig.ArtifactUnchecked.getBooleanValue() ? 0 : 40;
     }
 
     @ModifyExpressionValue(method = "tryAddArtifact", at = @At(value = "INVOKE", target = "Lnet/minecraft/WorldInfo;hasAchievementUnlockedOrIsNull(Lnet/minecraft/Achievement;)Z"))
     private static boolean noAchievementNeeded(boolean original) {
-        return PogLootConfig.ArtifactUnchecked.get() || original;
+        return PogLootConfig.ArtifactUnchecked.getBooleanValue() || original;
     }
 
     @ModifyExpressionValue(method = "tryAddArtifact", at = @At(value = "INVOKE", target = "Lnet/minecraft/WorldInfo;hasSignatureBeenAdded(I)Z"))
     private static boolean unlimited(boolean original) {
-        return PogLootConfig.ArtifactUnlimited.get() || original;
+        return PogLootConfig.ArtifactUnlimited.getBooleanValue() || original;
     }
 
     @Redirect(method = "generateChestContents", at = @At(value = "INVOKE", target = "Lnet/minecraft/World;getDayOfWorld()I"))
     private static int noDayCheck(World instance) {
-        return PogLootConfig.MetalToolsUnchecked.get() ? 1 << 30 : instance.getDayOfWorld();
+        return PogLootConfig.MetalToolsUnchecked.getBooleanValue() ? 1 << 30 : instance.getDayOfWorld();
     }
 
     @Redirect(method = "generateChestContents", at = @At(value = "INVOKE", target = "Lnet/minecraft/IInventory;setInventorySlotContents(ILnet/minecraft/ItemStack;)V"))

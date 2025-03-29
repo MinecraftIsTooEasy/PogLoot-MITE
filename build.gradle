@@ -42,20 +42,20 @@ dependencies {
     implementation files(loom.getFML().toPath())
 
     //must
-    implementation files("${lib_dir}/ManyLib.jar")
-    implementation files("${lib_dir}/RustedIronCore.jar")
-    implementation files("${lib_dir}/RustedIronCore-sources.jar")
+    implementation files("${lib_dir}/ManyLib-2.2.2.jar")
+    implementation files("${lib_dir}/RustedIronCore-1.3.9.jar")
+    implementation files("${lib_dir}/RustedIronCore-sources-1.3.9.jar")
 
-    //optional
-    implementation files("${lib_dir}/ModernMite.jar")
-    implementation files("${lib_dir}/ommc.jar")
-    implementation files("${lib_dir}/GammaFree.jar")
-    implementation files("${lib_dir}/Neodymium.jar")
-    implementation files("${lib_dir}/ExtraGui.jar")
-    implementation files("${lib_dir}/Hwite.jar")
-    implementation files("${lib_dir}/ModMenu.jar")
-    implementation files("${lib_dir}/PinIn-Lib.jar")
-    implementation files("${lib_dir}/EMI.jar")
+//    //optional
+//    implementation files("${lib_dir}/ModernMite.jar")
+//    implementation files("${lib_dir}/ommc.jar")
+//    implementation files("${lib_dir}/GammaFree.jar")
+//    implementation files("${lib_dir}/Neodymium.jar")
+//    implementation files("${lib_dir}/ExtraGui.jar")
+//    implementation files("${lib_dir}/Hwite.jar")
+//    implementation files("${lib_dir}/ModMenu.jar")
+//    implementation files("${lib_dir}/PinIn-Lib.jar")
+//    implementation files("${lib_dir}/EMI.jar")
 }
 
 processResources {

@@ -1,5 +1,6 @@
 package com.github.Debris.PogLoot.mixins.chest;
 
+import com.github.Debris.PogLoot.config.PogLootConfig;
 import net.minecraft.*;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,11 +24,13 @@ public abstract class WorldGenDungeonsMixin {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void inject(CallbackInfo ci) {
-        field_111189_a = new WeightedRandomChestContent[]{
-                new WeightedRandomChestContent(Item.carrot.itemID, 0, 1, 1, 5),
-                new WeightedRandomChestContent(Item.potato.itemID, 0, 1, 1, 5),
-                new WeightedRandomChestContent(Item.appleGold.itemID, 0, 1, 1, 1)};
-        chest_contents_for_underworld = new WeightedRandomChestContent[]{
-                new WeightedRandomChestContent(Item.ingotAncientMetal.itemID, 0, 1, 4, 10)};
+        if (PogLootConfig.DungeonsLootOnlyTheTreasureRemains.getBooleanValue()) {
+            field_111189_a = new WeightedRandomChestContent[]{
+                    new WeightedRandomChestContent(Item.carrot.itemID, 0, 1, 1, 5),
+                    new WeightedRandomChestContent(Item.potato.itemID, 0, 1, 1, 5),
+                    new WeightedRandomChestContent(Item.appleGold.itemID, 0, 1, 1, 1)};
+            chest_contents_for_underworld = new WeightedRandomChestContent[]{
+                    new WeightedRandomChestContent(Item.ingotAncientMetal.itemID, 0, 1, 4, 10)};
+        }
     }
 }

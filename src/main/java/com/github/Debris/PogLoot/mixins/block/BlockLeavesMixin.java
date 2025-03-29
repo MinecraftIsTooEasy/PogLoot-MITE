@@ -19,7 +19,7 @@ public class BlockLeavesMixin {
 
     @ModifyConstant(method = "dropBlockAsEntityItem", constant = @Constant(floatValue = 0.005F))
     private float moreFruit(float constant) {
-        return 1.0F;
+        return (float) PogLootConfig.LeavesDropFruitRate.getDoubleValue();
     }
 
     @ModifyConstant(method = "dropBlockAsEntityItem", constant = @Constant(floatValue = 0.01F))

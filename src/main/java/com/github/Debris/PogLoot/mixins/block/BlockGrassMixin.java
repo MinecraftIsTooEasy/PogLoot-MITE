@@ -14,7 +14,7 @@ public abstract class BlockGrassMixin extends Block {
     }
 
     @Inject(method = "dropBlockAsEntityItem", at = @At("HEAD"), cancellable = true)
-    private void inject(BlockBreakInfo info, CallbackInfoReturnable<Integer> cir) {// TODO
+    private void dirtDropWormDate(BlockBreakInfo info, CallbackInfoReturnable<Integer> cir) {// TODO
         if (info.wasHarvestedByPlayer() && !info.world.isFreezing(info.x, info.z)) {
             int fortune = info.getHarvesterFortune();
             if (fortune > 3) {

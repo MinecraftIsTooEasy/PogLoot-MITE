@@ -1,5 +1,6 @@
 package com.github.Debris.PogLoot.mixins.chest.stronghold;
 
+import com.github.Debris.PogLoot.config.PogLootConfig;
 import net.minecraft.ComponentStrongholdLibrary;
 import net.minecraft.Item;
 import net.minecraft.WeightedRandomChestContent;
@@ -17,18 +18,21 @@ public class StrongholdLibraryMixin {
 
     @ModifyArg(method = "addComponentParts", at = @At(value = "INVOKE", target = "Lnet/minecraft/ComponentStrongholdLibrary;generateStructureChestContents(Lnet/minecraft/World;Lnet/minecraft/StructureBoundingBox;Ljava/util/Random;IIII[Lnet/minecraft/WeightedRandomChestContent;I[FLnet/minecraft/EnumDirection;)Z"), index = 7)
     private WeightedRandomChestContent[] inject(WeightedRandomChestContent[] par8) {
-        return new WeightedRandomChestContent[]{
+        if (PogLootConfig.StrongholdLootOnlyTheTreasureRemains.getBooleanValue())
+            return new WeightedRandomChestContent[]{
                 Item.enchantedBook.func_92112_a(new Random(), 1, 5, 2)};
+        else return par8;
     }
 
     @ModifyArg(method = "addComponentParts", at = @At(value = "INVOKE", target = "Lnet/minecraft/ComponentStrongholdLibrary;generateStructureChestContents(Lnet/minecraft/World;Lnet/minecraft/StructureBoundingBox;Ljava/util/Random;IIII[Lnet/minecraft/WeightedRandomChestContent;I[FLnet/minecraft/EnumDirection;)Z"), index = 8)
     private int inject(int par4) {
-        return 4;
+        if (PogLootConfig.StrongholdLootToolChancesMaximum.getBooleanValue()) return 4;
+        else return par4;
     }
 
 
-    @ModifyConstant(method = "addComponentParts", constant = @Constant(floatValue = 0.5f))
+    @ModifyConstant(method = "addComponentParts", constant = @Constant(floatValue = 0.5F))
     private float maximize(float constant) {
-        return 1.0f;
+        return (float) PogLootConfig.StrongholdArtifactChances.getDoubleValue();
     }
 }

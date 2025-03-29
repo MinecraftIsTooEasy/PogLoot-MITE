@@ -13,12 +13,15 @@
   "authors": [
     "Debris"
   ],
+  "contributors": [
+    "Xy_Lose"
+  ],
   "entrypoints": {
     "main": [
-      "com.github.Debris.PogLoot.PogLoot"
+      "com.github.Debris.PogLoot.PogLootInit"
     ],
     "preLaunch": [
-      "com.github.Debris.PogLoot.EarlyRiser"
+      "com.github.Debris.PogLoot.PogLootEarlyRiser"
     ]
   },
   "mixins": [
