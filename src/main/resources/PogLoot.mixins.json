@@ -1,0 +1,41 @@
+{
+  "required": true,
+  "package": "com.github.Debris.PogLoot.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "target": "DEFAULT",
+  "minVersion": "0.8.3",
+  "mixins": [
+    "block.BlockCropsMixin",
+    "block.BlockDeadBushMixin",
+    "block.BlockLeavesMixin",
+    "block.BlockOreMixin",
+    "block.BlockRedstoneOreMixin",
+    "block.BlockTallGrassMixin",
+    "chest.BlackSmithMixin",
+    "chest.DesertPyramidMixin",
+    "chest.JungleTempleMixin",
+    "chest.MineshaftMixin",
+    "chest.SwampHutMixin",
+    "chest.WorldGenDungeonsMixin",
+    "chest.misc.ItemEnchantedBookMixin",
+    "chest.misc.WeightedRandomMixin",
+    "chest.stronghold.StrongholdLibraryMixin",
+    "chest.stronghold.StrongholdRoomCrossingMixin",
+    "entity.EntityLivingBaseMixin",
+    "entity.EntityLivingMixin",
+    "entity.animal.EntityChickenMixin",
+    "entity.animal.EntityCowMixin",
+    "entity.animal.EntityHorseMixin",
+    "entity.animal.EntityPigMixin",
+    "entity.animal.EntitySheepMixin",
+    "entity.monster.EntityBlazeMixin",
+    "entity.monster.EntityEndermanMixin",
+    "entity.monster.EntityInfernalCreeperMixin",
+    "entity.monster.EntityZombieMixin",
+    "item.ItemFoodMixin",
+    "world.BiomeDecoratorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
