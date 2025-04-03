@@ -41,6 +41,8 @@ public class PogLootConfig extends SimpleConfigs {
     public static final ConfigBoolean DungeonsLootOnlyTheTreasureRemains = new ConfigBoolean("地牢战战利品箱只保留宝藏", true);
     public static final ConfigBoolean AnimalsMaximumChanceOfDroppingLoot = new ConfigBoolean("动物掉落战利品概率最大化", true);
     public static final ConfigBoolean MonsterMaximumChanceOfDroppingLoot = new ConfigBoolean("怪物掉落战利品概率最大化", true);
+    public static final ConfigBoolean UltraFortune = new ConfigBoolean("超级时运", true, "小于1概率改为必掉, 1以上概率改为必翻倍");
+    public static final ConfigBoolean LootNoSlotOverlap = new ConfigBoolean("战利品避免槽位重叠", true, "原版中会出现覆盖现象");
     public static final ConfigBoolean LapisDropRateMaximum = new ConfigBoolean("青金石矿石掉落概率最大化", true);
     public static final ConfigBoolean RedstoneDropRateMaximum = new ConfigBoolean("红石矿石掉落概率最大化", true);
     public static final ConfigBoolean GravelDropRateMaximum = new ConfigBoolean("沙砾掉落概率最大化", true);
@@ -72,12 +74,31 @@ public class PogLootConfig extends SimpleConfigs {
     public static final ConfigInteger LapisSize = new ConfigInteger("青金石矿大小", 3, 1, 32);
 
     static {
-        settings = List.of(ArtifactUnchecked, ArtifactUnlimited, MetalToolsUnchecked, LapisDropRateMaximum, RedstoneDropRateMaximum,
-                LootEnchantmentBookMaxLevel, LootItemMaxNum, StrongholdLootToolChancesMaximum, StrongholdLootOnlyTheTreasureRemains,
-                VillageLootToolChancesMaximum, DesertPyramidLootToolChancesMaximum, DesertPyramidLootOnlyTheTreasureRemains,
-                JungleTempleLootToolChancesMaximum, JungleTempleLootOnlyTheTreasureRemains, MineshaftLootToolChancesMaximum,
-                SwampHutLootToolChancesMaximum, SwampHutLootOnlyTheTreasureRemains, DungeonsLootOnlyTheTreasureRemains,
-                AnimalsMaximumChanceOfDroppingLoot, MonsterMaximumChanceOfDroppingLoot, GravelDropRateMaximum);
+        settings = List.of(
+                ArtifactUnchecked,
+                ArtifactUnlimited,
+                MetalToolsUnchecked,
+                LootEnchantmentBookMaxLevel,
+                LootItemMaxNum,
+                StrongholdLootToolChancesMaximum,
+                StrongholdLootOnlyTheTreasureRemains,
+                VillageLootToolChancesMaximum,
+                DesertPyramidLootToolChancesMaximum,
+                DesertPyramidLootOnlyTheTreasureRemains,
+                JungleTempleLootToolChancesMaximum,
+                JungleTempleLootOnlyTheTreasureRemains,
+                MineshaftLootToolChancesMaximum,
+                SwampHutLootToolChancesMaximum,
+                SwampHutLootOnlyTheTreasureRemains,
+                DungeonsLootOnlyTheTreasureRemains,
+                AnimalsMaximumChanceOfDroppingLoot,
+                MonsterMaximumChanceOfDroppingLoot,
+                UltraFortune,
+                LootNoSlotOverlap,
+                LapisDropRateMaximum,
+                RedstoneDropRateMaximum,
+                GravelDropRateMaximum
+        );
         rates = List.of(LeavesTickRate, LeavesDropFruitRate, LeavesDropSaplingRate, LeavesDropStickRate,
                 DeadBushDropStickRate, WitherDeadBushDropStickRate, GrassDropSeedRate, StrongholdArtifactChances,
                 DesertPyramidArtifactChances, JungleTempleArtifactChances, EatRottenFleshPoisonChance);

@@ -12,7 +12,7 @@ import java.util.Random;
 public class BlockRedstoneOreMixin {
     @Redirect(method = "dropBlockAsEntityItem", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I"))
     private int inject(Random random, int x) {
-        if (PogLootConfig.LapisDropRateMaximum.getBooleanValue()) return x - 1;
+        if (PogLootConfig.RedstoneDropRateMaximum.getBooleanValue()) return x - 1;
         else return x;
     }
 }

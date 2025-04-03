@@ -2,10 +2,18 @@ package com.github.Debris.PogLoot.mixins.chest.misc;
 
 import com.github.Debris.PogLoot.config.PogLootConfig;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import net.minecraft.*;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.IInventory;
+import net.minecraft.ItemStack;
+import net.minecraft.WeightedRandomChestContent;
+import net.minecraft.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WeightedRandomChestContent.class)
@@ -15,8 +23,8 @@ public class WeightedRandomMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/ItemStack;III)V", at = @At("TAIL"))
     private void alwaysMostQuantity(ItemStack item_stack, int min_quantity, int max_quantity, int weight, CallbackInfo ci) {
-       if (PogLootConfig.LootItemMaxNum.getBooleanValue())
-           this.min_quantity = max_quantity;
+        if (PogLootConfig.LootItemMaxNum.getBooleanValue())
+            this.min_quantity = max_quantity;
     }
 
     @Inject(method = "<init>(IIIII)V", at = @At("TAIL"))
@@ -47,21 +55,22 @@ public class WeightedRandomMixin {
         return PogLootConfig.ArtifactUnlimited.getBooleanValue() || original;
     }
 
-    @Redirect(method = "generateChestContents", at = @At(value = "INVOKE", target = "Lnet/minecraft/World;getDayOfWorld()I"))
-    private static int noDayCheck(World instance) {
-        return PogLootConfig.MetalToolsUnchecked.getBooleanValue() ? 1 << 30 : instance.getDayOfWorld();
+    @WrapOperation(method = "generateChestContents", at = @At(value = "INVOKE", target = "Lnet/minecraft/World;getDayOfWorld()I"))
+    private static int noDayCheck(World instance, Operation<Integer> original) {
+        return PogLootConfig.MetalToolsUnchecked.getBooleanValue() ? 1 << 30 : original.call(instance);
     }
 
-    @Redirect(method = "generateChestContents", at = @At(value = "INVOKE", target = "Lnet/minecraft/IInventory;setInventorySlotContents(ILnet/minecraft/ItemStack;)V"))
-    private static void noOverlap(IInventory instance, int i, ItemStack itemStack) {
-        int finalSlot = i;
-        if (instance.getStackInSlot(i) != null) {
-            int attempt = (i + 1) % instance.getSizeInventory();
-            while (attempt != i) {
+    @WrapOperation(method = "generateChestContents", at = @At(value = "INVOKE", target = "Lnet/minecraft/IInventory;setInventorySlotContents(ILnet/minecraft/ItemStack;)V"))
+    private static void noSlotOverlap(IInventory instance, int slot, ItemStack itemStack, Operation<Void> original) {
+        int finalSlot = slot;
+        if (PogLootConfig.LootNoSlotOverlap.getBooleanValue() && instance.getStackInSlot(slot) != null) {
+            int size = instance.getSizeInventory();
+            int attempt = (slot + 1) % size;
+            while (attempt != slot) {
                 if (instance.getStackInSlot(attempt) == null) finalSlot = attempt;
-                attempt = (attempt + 1) % instance.getSizeInventory();
+                attempt = (attempt + 1) % size;
             }
         }
-        instance.setInventorySlotContents(finalSlot, itemStack);
+        original.call(instance, finalSlot, itemStack);
     }
 }
