@@ -24,7 +24,7 @@ public abstract class WorldGenDungeonsMixin {
 
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void inject(CallbackInfo ci) {
-        if (PogLootConfig.DungeonsLootOnlyTheTreasureRemains.getBooleanValue()) {
+        if (PogLootConfig.DungeonsLootOnlyTreasure.getBooleanValue()) {
             field_111189_a = new WeightedRandomChestContent[]{
                     new WeightedRandomChestContent(Item.carrot.itemID, 0, 1, 1, 5),
                     new WeightedRandomChestContent(Item.potato.itemID, 0, 1, 1, 5),

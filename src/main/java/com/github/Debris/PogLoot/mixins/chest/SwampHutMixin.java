@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public class SwampHutMixin {
     @ModifyArg(method = "addComponentParts", at = @At(value = "INVOKE", target = "Lnet/minecraft/ComponentScatteredFeatureSwampHut;generateStructureChestContents(Lnet/minecraft/World;Lnet/minecraft/StructureBoundingBox;Ljava/util/Random;IIII[Lnet/minecraft/WeightedRandomChestContent;I[FLnet/minecraft/EnumDirection;)Z"), index = 7)
     private WeightedRandomChestContent[] inject(WeightedRandomChestContent[] par8) {
-        if (PogLootConfig.SwampHutLootOnlyTheTreasureRemains.getBooleanValue())
+        if (PogLootConfig.SwampHutLootOnlyTreasure.getBooleanValue())
             return new WeightedRandomChestContent[]{
                 new WeightedRandomChestContent(Item.carrot.itemID, 0, 1, 2, 3),//77-79
                 new WeightedRandomChestContent(Item.potato.itemID, 0, 1, 2, 3),//80-82

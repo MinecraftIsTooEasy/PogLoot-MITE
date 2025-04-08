@@ -5,6 +5,7 @@
   "target": "DEFAULT",
   "minVersion": "0.8.3",
   "mixins": [
+    "block.BlockCropsMixin",
     "block.BlockDeadBushMixin",
     "block.BlockLeavesMixin",
     "block.BlockMixin",
@@ -19,6 +20,7 @@
     "chest.WorldGenDungeonsMixin",
     "chest.misc.ItemEnchantedBookMixin",
     "chest.misc.WeightedRandomMixin",
+    "chest.stronghold.StrongholdChestCorridorMixin",
     "chest.stronghold.StrongholdLibraryMixin",
     "chest.stronghold.StrongholdRoomCrossingMixin",
     "entity.EntityLivingBaseMixin",
@@ -32,10 +34,13 @@
     "entity.monster.EntityEndermanMixin",
     "entity.monster.EntityInfernalCreeperMixin",
     "entity.monster.EntityZombieMixin",
+    "item.ItemBucketMixin",
     "item.ItemFoodMixin",
-    "world.BiomeDecoratorMixin"
+    "world.ItemInWorldManagerMixin",
+    "world.WorldServerMixin",
+    "world.gen.BiomeDecoratorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  }
 }

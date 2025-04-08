@@ -15,7 +15,7 @@ public class StrongholdRoomCrossingMixin {
 
     @ModifyArg(method = "addComponentParts", at = @At(value = "INVOKE", target = "Lnet/minecraft/ComponentStrongholdRoomCrossing;generateStructureChestContents(Lnet/minecraft/World;Lnet/minecraft/StructureBoundingBox;Ljava/util/Random;IIII[Lnet/minecraft/WeightedRandomChestContent;I[FLnet/minecraft/EnumDirection;)Z"), index = 7)
     private WeightedRandomChestContent[] inject(WeightedRandomChestContent[] par7ArrayOfWeightedRandomChestContent) {
-        if (PogLootConfig.StrongholdLootOnlyTheTreasureRemains.getBooleanValue())
+        if (PogLootConfig.StrongholdLootOnlyTreasure.getBooleanValue())
             return new WeightedRandomChestContent[]{
                 new WeightedRandomChestContent(Item.carrot.itemID, 0, 1, 1, 5),
                 new WeightedRandomChestContent(Item.potato.itemID, 0, 1, 1, 5),

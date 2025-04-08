@@ -18,7 +18,7 @@ public class StrongholdLibraryMixin {
 
     @ModifyArg(method = "addComponentParts", at = @At(value = "INVOKE", target = "Lnet/minecraft/ComponentStrongholdLibrary;generateStructureChestContents(Lnet/minecraft/World;Lnet/minecraft/StructureBoundingBox;Ljava/util/Random;IIII[Lnet/minecraft/WeightedRandomChestContent;I[FLnet/minecraft/EnumDirection;)Z"), index = 7)
     private WeightedRandomChestContent[] inject(WeightedRandomChestContent[] par8) {
-        if (PogLootConfig.StrongholdLootOnlyTheTreasureRemains.getBooleanValue())
+        if (PogLootConfig.StrongholdLootOnlyTreasure.getBooleanValue())
             return new WeightedRandomChestContent[]{
                 Item.enchantedBook.func_92112_a(new Random(), 1, 5, 2)};
         else return par8;

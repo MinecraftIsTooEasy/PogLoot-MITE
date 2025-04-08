@@ -1,4 +1,4 @@
-package com.github.Debris.PogLoot.mixins.world;
+package com.github.Debris.PogLoot.mixins.world.gen;
 
 import com.github.Debris.PogLoot.config.PogLootConfig;
 import net.minecraft.BiomeDecorator;

@@ -15,7 +15,7 @@ public class DesertPyramidMixin {
 
     @ModifyArg(method = "addComponentParts", at = @At(value = "INVOKE", target = "Lnet/minecraft/ComponentScatteredFeatureDesertPyramid;generateStructureChestContents(Lnet/minecraft/World;Lnet/minecraft/StructureBoundingBox;Ljava/util/Random;IIII[Lnet/minecraft/WeightedRandomChestContent;I[FLnet/minecraft/EnumDirection;)Z"), index = 7)
     private WeightedRandomChestContent[] inject(WeightedRandomChestContent[] par8) {
-        if (PogLootConfig.DesertPyramidLootOnlyTheTreasureRemains.getBooleanValue())
+        if (PogLootConfig.DesertPyramidLootOnlyTreasure.getBooleanValue())
             return new WeightedRandomChestContent[]{
                 new WeightedRandomChestContent(Item.shardDiamond.itemID, 0, 1, 3, 1),//3
                 new WeightedRandomChestContent(Item.goldNugget.itemID, 0, 2, 7, 1),//15
